@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Precificação</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .total-section {
+            margin-top: 20px;
+        }
+
+        .implantation-section {
+            float: right;
+            margin-top: 20px;
+            margin-right: 20px; 
+        }
+    </style>
+</head>
+<body>
+    <div class="proposal-section">
+        <h5>Proposta</h5>
+        <a href="#" target="_blank">
+            <button type="button" class="btn btn-primary">Clique aqui para ver a proposta</button>
+        </a>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <h4>Calculadora de Precificação</h4>
+            <hr>
+            <form id="pricingCalculatorForm">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Produto</th>
+                            <th>Selecionar</th>
+                            <th>Valor (R$)</th>
+                            <th>Informação Adicional</th>
+                            
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Número de Colaboradores</td>
+                            <td><input type="checkbox" name="numero_colaboradores_checkbox"></td>
+                            <td><input type="text" id="valor_numero_colaboradores" placeholder="Número de Colaboradores"></td>
+                            <td></td>
+                            
+                        </tr>
+                        <tr>
+                            <td>Ponto</td>
+                            <td><input type="checkbox" name="ponto_checkbox"></td>
+                            <td><input type="text" id="valor_ponto_base" placeholder="Valor Base"></td>
+                            <td><input type="text" id="valor_adicional_ponto" placeholder="Valor Adicional"></td>
+                            
+                        </tr>
+                        <tr>
+                            <td>Pro</td>
+                            <td><input type="checkbox" name="pro_checkbox"></td>
+                            <td><input type="text" id="valor_pro" placeholder="Informe o valor do PRO"></td>
+                            <td><input type="text" id="valor_colaboradores_ativos" placeholder="Colaboradores Ativos"></td>
+                        
+                        </tr>
+                        <tr>
+                            <td>Facial</td>
+                            <td><input type="checkbox" name="facial_checkbox"></td>
+                            <td><input type="text" id="valor_facial" placeholder="Informe o valor do Facial"></td>
+                            <td></td>
+                            
+                        </tr>
+                        <tr>
+                            <td>Assinatura</td>
+                            <td><input type="checkbox" name="assinatura_checkbox"></td>
+                            <td><input type="text" id="valor_assinatura" placeholder="Informe o valor da Assinatura"></td>
+                            <td></td>
+                            
+                        </tr>
+                        <tr>
+                            <td>Férias</td>
+                            <td><input type="checkbox" name="ferias_checkbox"></td>
+                            <td><input type="text" id="valor_ferias" placeholder="Informe o valor"></td>
+                            <td></td>
+                            
+                        </tr>
+                        <tr>
+                            <td>Admissão</td>
+                            <td><input type="checkbox" name="admissao_checkbox"></td>
+                            <td><input type="text" id="valor_admissao" placeholder="Informe o valor" disabled></td>
+                            <td></td>
+                            
+                        </tr>
+                        <tr>
+                            <td>GED</td>
+                            <td><input type="checkbox" name="ged_checkbox"></td>
+                            <td><input type="text" id="valor_ged" placeholder="Informe o valor" disabled></td>
+                            <td></td>
+                            
+                        </tr>
+                        <tr>
+                            <td>JornadaDP</td>
+                            <td><input type="checkbox" name="jornadadp_checkbox"></td>
+                            <td><input type="text" id="valor_jornadadp" placeholder="Informe o valor"></td>
+                            <td></td>     
+                        </tr>
+                        <tr>
+                            <td>Desconto</td>
+                            <td><input type="checkbox" name="desconto_checkbox" id="desconto_checkbox"></td>
+                            <td><input type="text" id="desconto_porcentagem" placeholder="Informe o desconto"></td>
+                            <td><input type="text" id="valor_desconto" placeholder="Valor do desconto" readonly></td>
+                        </tr>
+                            
+                        
+                        
+                    </tbody>
+                </table>
+                <div class="implantation-section">
+                    <h5>Implantação</h5>
+                    <table class="table">
+                        <tbody>
+                            
+                            <tr>
+                                <td>Adesão de Ponto</td>
+                                <td><input type="checkbox" name="implantation_adhesion_ponto_checkbox"></td>
+                                <td><input type="text" id="valor_implantation_adhesion_ponto" placeholder="Informe o valor"></td>
+                                <td></td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Adesão Geral</td>
+                                <td><input type="checkbox" name="implantation_adhesion_geral_checkbox"></td>
+                                <td><input type="text" id="valor_implantation_adhesion_geral" placeholder="Informe o valor"></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                
+                <button type="button" onclick="calculatePrice()" class="btn btn-primary">Calcular</button>
+            </form>
+        </div>
+        <div class="total-section">
+            <h5></h5>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Produto</th>
+                        <th>Valor Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Ponto</td>
+                        <td><input type="text" id="valor_total_ponto" placeholder="Valor total"readonly></td>
+                    </tr>
+                    <tr>
+                        <td>Pro</td>
+                        <td><input type="text" id="valor_total_pro" placeholder="Valor total"readonly></td>
+                    </tr>
+                    <tr>
+                        <td>Facial</td>
+                        <td><input type="text" id="valor_total_facial" placeholder="Valor total"readonly></td>
+                    </tr>
+                    <tr>
+                        <td>Assinatura</td>
+                        <td><input type="text" id="valor_total_assinatura" placeholder="Valor total"readonly></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Férias</td>
+                        <td><input type="text" id="valor_total_ferias" placeholder="Valor total"readonly></td>
+                    </tr>
+                    <tr>
+                        <td>Admissão</td>
+                        <td><input type="text" id="valor_total_admissao" placeholder="Valor total"readonly></td>
+                    </tr>
+                    <tr>
+                        <td>GED</td>
+                        <td><input type="text" id="valor_total_ged" placeholder="Valor total"readonly></td>
+                    </tr>
+
+                    <tr>
+                        <td>JornadaDP</td>
+                        <td><input type="text" id="valor_total_jornadadp" placeholder="Valor total"readonly></td>
+                    </tr>
+                    <tr>
+                        <td>Valor Adesão de Ponto</td>
+                        <td><input type="text" id="valor_total_adesao_ponto" placeholder="Valor total" readonly></td>
+                    </tr>
+                    <tr>
+                        <td>Valor Adesão Geral</td>
+                        <td><input type="text" id="valor_total_adesao_geral" placeholder="Valor total" readonly></td>
+                    </tr>
+                    <tr>
+                        <tr>
+                            <td>Valor unitário por colaborador</td>
+                            <td><input type="text" id="valor_unitario" placeholder="Valor total" readonly></td>
+                        </tr>
+                        <tr>
+                        <td>Valor da Mensalidade</td>
+                        <td><input type="text" id="valor_total_mensalidade" placeholder="Valor total"></td>
+                    </tr>
+
+
+                </tbody>
+            </table>
+        </div>
+    
+                
+                    
+                
+                
+                
+                
+                
+
+            </tbody>
+        </table>
+    </div>
+    
+
+    <script src="Java.js"></script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
